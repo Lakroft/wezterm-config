@@ -87,15 +87,15 @@ local keys = {
       }),
    },
    -- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
-   -- { key = '0', mods = 'CTRL', action = wezterm.action.PaneSelect },
-   -- -- activate pane selection mode with numeric labels
-   -- {
-   --    key = '9',
-   --    mods = 'CTRL',
-   --    action = wezterm.action.PaneSelect {
-   --       alphabet = '1234567890',
-   --    },
-   -- },
+   { key = 'p', mods = 'CTRL', action = wezterm.action.PaneSelect },
+   -- activate pane selection mode with numeric labels
+   {
+      key = 'p',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.PaneSelect {
+         alphabet = '1234567890',
+      },
+   },
 }
 
 local key_tables = {
@@ -130,7 +130,7 @@ local mouse_bindings = {
 }
 
 return {
-   disable_default_key_bindings = true,
+   -- disable_default_key_bindings = true,
    leader = { key = 'Space', mods = 'CTRL|SHIFT' },
    keys = keys,
    key_tables = key_tables,
