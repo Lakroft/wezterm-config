@@ -2,6 +2,15 @@ local wezterm = require('wezterm')
 local colors = require('colors.custom')
 -- local fonts = require('config.fonts')
 
+local backgrounds = {
+   '/Users/vladimir.senchenko/.config/wezterm/Inadzuma.png',
+   '/Users/vladimir.senchenko/.config/wezterm/Sumeru.png',
+   '/Users/vladimir.senchenko/.config/wezterm/Mondstadt.png',
+   '/Users/vladimir.senchenko/.config/wezterm/Liue.png',
+}
+math.randomseed(os.time())
+local background_index = math.random(1, #(backgrounds))
+
 return {
    animation_fps = 60,
    max_fps = 60,
@@ -14,13 +23,14 @@ return {
    -- background
    background = {
       {
-         source = { File = wezterm.config_dir .. '/backdrops/space.jpg' },
+         -- source = { File = backgrounds[background_index] }, -- Random background on earch startup. -- IDK why, but relative path didn't work, only absolute
+         source = { File = backgrounds[1] },
       },
       {
          source = { Color = colors.background },
          height = '100%',
          width = '100%',
-         opacity = 0.90,
+         opacity = 0.87,
       },
    },
 
@@ -48,5 +58,8 @@ return {
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
-   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
+   inactive_pane_hsb = { 
+      saturation = 0.5,
+      brightness = 0.5, 
+   },
 }

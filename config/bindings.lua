@@ -7,6 +7,7 @@ local mod = {}
 if platform.is_mac then
    mod.SUPER = 'SUPER'
    mod.SUPER_REV = 'SUPER|CTRL'
+   mod.SFT_CTRL_OPT = 'SHIFT|CTRL|OPT'
 elseif platform.is_win then
    mod.SUPER = 'ALT' -- to not conflict with Windows key shortcuts
    mod.SUPER_REV = 'ALT|CTRL'
@@ -28,7 +29,7 @@ local keys = {
    -- tabs --
    -- tabs: spawn+close
    { key = 't', mods = mod.SUPER, action = act.SpawnTab('DefaultDomain') },
-   { key = 't', mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:Ubuntu' }) },
+   
    { key = 'w', mods = mod.SUPER_REV, action = act.CloseCurrentTab({ confirm = false }) },
 
    -- tabs: navigation
@@ -44,13 +45,13 @@ local keys = {
    -- panes --
    -- panes: split panes
    {
-      key = [[\]],
-      mods = mod.SUPER,
+      key = 'l',
+      mods = mod.SFT_CTRL_OPT,
       action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
    {
-      key = [[\]],
-      mods = mod.SUPER_REV,
+      key = 'm',
+      mods = mod.SFT_CTRL_OPT,
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
 
@@ -85,6 +86,16 @@ local keys = {
          timemout_miliseconds = 1000,
       }),
    },
+   -- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
+   { key = '0', mods = 'CTRL', action = wezterm.action.PaneSelect },
+   -- activate pane selection mode with numeric labels
+   {
+      key = '9',
+      mods = 'CTRL',
+      action = wezterm.action.PaneSelect {
+         alphabet = '1234567890',
+      },
+   },
 }
 
 local key_tables = {
@@ -104,6 +115,10 @@ local key_tables = {
       { key = 'q', action = 'PopKeyTable' },
    },
 }
+
+if platform.is_win then
+   table.insert( keys, { key = 't', mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:Ubuntu' }) } )
+end
 
 local mouse_bindings = {
    -- Ctrl-click will open the link under the mouse cursor
