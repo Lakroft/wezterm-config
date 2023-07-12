@@ -1,4 +1,5 @@
 # My WezTerm Config
+clone of https://github.com/KevinSilvester/wezterm-config
 
 ![screenshot](./screenshots/screenshot-2.png)
 
