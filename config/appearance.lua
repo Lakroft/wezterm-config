@@ -23,8 +23,7 @@ return {
    -- background
    background = {
       {
-         -- source = { File = backgrounds[background_index] }, -- Random background on earch startup. -- IDK why, but relative path didn't work, only absolute
-         source = { File = backgrounds[1] },
+         source = { File = backgrounds[background_index] }, -- Random background on earch startup. -- IDK why, but relative path didn't work, only absolute
       },
       {
          source = { Color = colors.background },
