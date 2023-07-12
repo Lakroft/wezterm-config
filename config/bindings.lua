@@ -45,12 +45,12 @@ local keys = {
    -- panes --
    -- panes: split panes
    {
-      key = 'l',
+      key = 'v',
       mods = mod.SFT_CTRL_OPT,
       action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
    {
-      key = 'm',
+      key = 'h',
       mods = mod.SFT_CTRL_OPT,
       action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
@@ -87,15 +87,15 @@ local keys = {
       }),
    },
    -- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
-   { key = '0', mods = 'CTRL', action = wezterm.action.PaneSelect },
-   -- activate pane selection mode with numeric labels
-   {
-      key = '9',
-      mods = 'CTRL',
-      action = wezterm.action.PaneSelect {
-         alphabet = '1234567890',
-      },
-   },
+   -- { key = '0', mods = 'CTRL', action = wezterm.action.PaneSelect },
+   -- -- activate pane selection mode with numeric labels
+   -- {
+   --    key = '9',
+   --    mods = 'CTRL',
+   --    action = wezterm.action.PaneSelect {
+   --       alphabet = '1234567890',
+   --    },
+   -- },
 }
 
 local key_tables = {

@@ -1,12 +1,30 @@
 local wezterm = require('wezterm')
 local colors = require('colors.custom')
--- local fonts = require('config.fonts')
+local os = require('os')
+local fonts = require('config.fonts')
+
+local pwd = wezterm.config_dir
+
+-- local supported_formats {'PNG', 'JPEG', 'GIF', 'BMP', 'ICO', 'TIFF', 'PNM', 'DDS', 'TGA'}
+
+-- function scandir()   -- TODO: С помощью этой функции и поиска по массиву, подгружать все изображения из backdrops папки
+--    local i, t, popen = 0, {}, io.popen
+--    local pfile = popen('ls -a "'..pwd..'"')
+--    for filename in pfile:lines() do
+--        table.insert(t, filename)
+--    end
+--    pfile:close()
+--    return t
+-- end
+
+-- local files = scandir()
+-- wezterm.log_info(files)
 
 local backgrounds = {
-   '/Users/vladimir.senchenko/.config/wezterm/Inadzuma.png',
-   '/Users/vladimir.senchenko/.config/wezterm/Sumeru.png',
-   '/Users/vladimir.senchenko/.config/wezterm/Mondstadt.png',
-   '/Users/vladimir.senchenko/.config/wezterm/Liue.png',
+   pwd .. '/backdrops/Inadzuma.png',
+   pwd .. '/backdrops/Sumeru.png',
+   pwd .. '/backdrops/Mondstadt.png',
+   pwd .. '/backdrops/Liue.png',
 }
 math.randomseed(os.time())
 local background_index = math.random(1, #(backgrounds))
@@ -23,7 +41,7 @@ return {
    -- background
    background = {
       {
-         source = { File = backgrounds[background_index] }, -- Random background on earch startup. -- IDK why, but relative path didn't work, only absolute
+         source = { File = backgrounds[background_index] },
       },
       {
          source = { Color = colors.background },
@@ -54,8 +72,8 @@ return {
    window_close_confirmation = 'NeverPrompt',
    window_frame = {
       active_titlebar_bg = '#090909',
-      -- font = fonts.font,
-      -- font_size = fonts.font_size,
+      font = fonts.font,
+      font_size = fonts.font_size,
    },
    inactive_pane_hsb = { 
       saturation = 0.5,
